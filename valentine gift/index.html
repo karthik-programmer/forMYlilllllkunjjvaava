@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Lil Babyyyyyy</title>
+    <style>
+        body {
+            background-color: #fff0f3;
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            color: #ff4d6d;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 { font-size: 2.2rem; margin-top: 10px; margin-bottom: 0; }
+        .nickname { 
+            font-size: 1.2rem; 
+            color: #ff758f; 
+            font-family: 'Brush Script MT', cursive;
+            margin-bottom: 5px;
+        }
+        .belated-note {
+            font-size: 0.8rem;
+            color: #c9184a;
+            background: #ffccd5;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+        }
+
+        /* The Gallery Container */
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            width: 90%;
+            max-width: 320px; /* Perfect for mobile */
+            padding-bottom: 120px;
+        }
+
+        /* Fixed Polaroid Style */
+        .photo-frame {
+            background: white;
+            padding: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 2px;
+            /* This ensures the box size is based on content, not fixed height */
+            height: auto; 
+            transition: transform 0.3s;
+        }
+
+        /* Subtle tilts */
+        .photo-frame:nth-child(1) { transform: rotate(-2deg); }
+        .photo-frame:nth-child(2) { transform: rotate(2deg); }
+        .photo-frame:nth-child(3) { transform: rotate(-1.5deg); }
+
+        .photo-frame img {
+            width: 100%;
+            height: 300px; /* Fixed height for consistency */
+            object-fit: cover; /* Crops image to fit without stretching */
+            display: block;
+            border: 1px solid #f0f0f0;
+        }
+
+        .caption {
+            margin-top: 12px;
+            font-size: 1.1rem;
+            color: #444;
+            font-family: 'Brush Script MT', cursive;
+        }
+
+        /* Floating Hearts */
+        .heart-float {
+            position: fixed;
+            bottom: -50px;
+            z-index: -1;
+            animation: floatUp 4s linear forwards;
+        }
+        @keyframes floatUp {
+            to { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* The Surprise Button */
+        #loveBtn {
+            position: fixed;
+            bottom: 30px;
+            padding: 15px 35px;
+            font-size: 1rem;
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+            font-weight: bold;
+            z-index: 100;
+        }
+
+        /* Desktop side-by-side */
+        @media (min-width: 768px) {
+            .gallery {
+                flex-direction: row;
+                max-width: 950px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>To: Deva ❤️</h1>
+    <p class="nickname">My lil babyyyyyy...</p>
+    <div class="belated-note">A little late, but you're my Valentine every day! ✨</div>
+
+    <div class="gallery">
+        <div class="photo-frame">
+            <img src="photo1.jpg" alt="Deva 1">
+            <div class="caption">Still the prettiest...</div>
+        </div>
+
+        <div class="photo-frame">
+            <img src="photo2.jpg" alt="Deva 2">
+            <div class="caption">Still my whole world 💖</div>
+        </div>
+
+        <div class="photo-frame">
+            <img src="photo3.jpg" alt="Deva 3">
+            <div class="caption">Always mine 🔐</div>
+        </div>
+    </div>
+
+    <button id="loveBtn">Tap for a Surprise! 💘</button>
+
+    <script>
+        const btn = document.getElementById('loveBtn');
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart-float';
+            heart.innerHTML = ['❤️', '💖', '💕', '✨'][Math.floor(Math.random() * 4)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = '25px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }
+        btn.addEventListener('click', () => {
+            for(let i=0; i<20; i++) setTimeout(createHeart, i * 100);
+        });
+        setInterval(createHeart, 800);
+    </script>
+</body>
+</html>
